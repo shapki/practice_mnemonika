@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,8 +67,50 @@
     <Compile Include="AppForms\ParentForm.Designer.cs">
       <DependentUpon>ParentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppModules\Auxi.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\Difficulty.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\Mnemonic.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\MnemonikaModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MnemonikaModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\MnemonikaModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\MnemonikaModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MnemonikaModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\PartOfSpeech.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\Role.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\Theme.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\User.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AppModules\Word.cs">
+      <DependentUpon>MnemonikaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AppForms\ParentForm.resx">
+      <DependentUpon>ParentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -68,7 +119,19 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="AppDocs\algorythm.pdf" />
+    <None Include="AppDocs\algorythm.vsd" />
+    <None Include="AppDocs\er-diagram.pdf" />
+    <EntityDeploy Include="AppModules\MnemonikaModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MnemonikaModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AppModules\MnemonikaModel.edmx.diagram">
+      <DependentUpon>MnemonikaModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -84,8 +147,24 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AppControls\" />
-    <Folder Include="AppDocs\" />
-    <Folder Include="AppModules\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppDocs\script.sql" />
+    <Content Include="AppModules\MnemonikaModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MnemonikaModel.edmx</DependentUpon>
+      <LastGenOutput>MnemonikaModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AppModules\MnemonikaModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MnemonikaModel.edmx</DependentUpon>
+      <LastGenOutput>MnemonikaModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\logo.ico" />
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,15 @@
+D:\mnemonika\mnemonika\bin\Debug\mnemonika.exe.config
+D:\mnemonika\mnemonika\bin\Debug\mnemonika.exe
+D:\mnemonika\mnemonika\bin\Debug\mnemonika.pdb
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.AssemblyReference.cache
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.ParentForm.resources
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.Properties.Resources.resources
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.GenerateResource.cache
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.CoreCompileInputs.cache
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.exe
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.pdb
+D:\mnemonika\mnemonika\bin\Debug\EntityFramework.dll
+D:\mnemonika\mnemonika\bin\Debug\EntityFramework.SqlServer.dll
+D:\mnemonika\mnemonika\bin\Debug\EntityFramework.xml
+D:\mnemonika\mnemonika\bin\Debug\EntityFramework.SqlServer.xml
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.Up2Date

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace mnemonika.AppForms
 {
@@ -15,6 +7,35 @@ namespace mnemonika.AppForms
         public ParentForm()
         {
             InitializeComponent();
+            HideLogoutButton();
+        }
+
+        private void HideLogoutButton()
+        {
+            logoutButton.Visible = false;
+        }
+
+        public void ShowLogoutButton()
+        {
+            logoutButton.Visible = true;
+        }
+
+        private void logoutButton_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        public void SetFullNameAndRole()
+        {
+            this.roleLabel.Text = "Роль_temp";
+            this.fullNameLabel.Text = "Пользователь_temp";
+        }
+
+        public void SetTitle(string title)
+        {
+            string tempTitle = "\"Мнемоника\": " + title;
+            this.Text = tempTitle;
+            this.titleLabel.Text = title;
         }
     }
 }

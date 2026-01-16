@@ -1,0 +1,530 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Shapkin_mnemonikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Auxi">
+          <Key>
+            <PropertyRef Name="IdAux" />
+          </Key>
+          <Property Name="IdAux" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RusWord" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="EngWord" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="TipicalMistake" Type="nvarchar" MaxLength="150" />
+          <Property Name="BritishTrans" Type="nvarchar" MaxLength="150" />
+          <Property Name="NorthAmericanTrans" Type="nvarchar" MaxLength="150" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Difficulty">
+          <Key>
+            <PropertyRef Name="IdDifficulty" />
+          </Key>
+          <Property Name="IdDifficulty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Difficulty" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mnemonic">
+          <Key>
+            <PropertyRef Name="IdMnemonic" />
+          </Key>
+          <Property Name="IdMnemonic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuxId" Type="int" Nullable="false" />
+          <Property Name="MnemonicDevice" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PartOfSpeech">
+          <Key>
+            <PropertyRef Name="IdPartOfSpeech" />
+          </Key>
+          <Property Name="IdPartOfSpeech" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartOfSpeech" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="IdTheme" />
+          </Key>
+          <Property Name="IdTheme" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Theme" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="IdWord" />
+          </Key>
+          <Property Name="IdWord" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartOfSpeechId" Type="int" Nullable="false" />
+          <Property Name="ThemeId" Type="int" Nullable="false" />
+          <Property Name="StudyDate" Type="date" />
+          <Property Name="AuxId" Type="int" Nullable="false" />
+          <Property Name="DifficultyId" Type="int" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Example" Type="nvarchar" MaxLength="150" />
+          <Property Name="Hint" Type="nvarchar" MaxLength="150" />
+          <Property Name="BasicExampleMark" Type="bit" Nullable="false" />
+          <Property Name="GeneralCardMark" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Mnemonic_Aux">
+          <End Role="Auxi" Type="Self.Auxi" Multiplicity="1" />
+          <End Role="Mnemonic" Type="Self.Mnemonic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auxi">
+              <PropertyRef Name="IdAux" />
+            </Principal>
+            <Dependent Role="Mnemonic">
+              <PropertyRef Name="AuxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Aux">
+          <End Role="Auxi" Type="Self.Auxi" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auxi">
+              <PropertyRef Name="IdAux" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="AuxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Difficulty">
+          <End Role="Difficulty" Type="Self.Difficulty" Multiplicity="0..1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Difficulty">
+              <PropertyRef Name="IdDifficulty" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="DifficultyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_PartOfSpeech">
+          <End Role="PartOfSpeech" Type="Self.PartOfSpeech" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartOfSpeech">
+              <PropertyRef Name="IdPartOfSpeech" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="PartOfSpeechId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Theme">
+          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="IdTheme" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="ThemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Shapkin_mnemonikaModelContainer">
+          <EntitySet Name="Auxi" EntityType="Self.Auxi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Difficulty" EntityType="Self.Difficulty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mnemonic" EntityType="Self.Mnemonic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PartOfSpeech" EntityType="Self.PartOfSpeech" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Word" EntityType="Self.Word" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Mnemonic_Aux" Association="Self.FK_Mnemonic_Aux">
+            <End Role="Auxi" EntitySet="Auxi" />
+            <End Role="Mnemonic" EntitySet="Mnemonic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Aux" Association="Self.FK_Word_Aux">
+            <End Role="Auxi" EntitySet="Auxi" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Difficulty" Association="Self.FK_Word_Difficulty">
+            <End Role="Difficulty" EntitySet="Difficulty" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_PartOfSpeech" Association="Self.FK_Word_PartOfSpeech">
+            <End Role="PartOfSpeech" EntitySet="PartOfSpeech" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Theme" Association="Self.FK_Word_Theme">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_User" Association="Self.FK_Word_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Shapkin_mnemonikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Auxi">
+          <Key>
+            <PropertyRef Name="IdAux" />
+          </Key>
+          <Property Name="IdAux" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RusWord" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EngWord" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TipicalMistake" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BritishTrans" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NorthAmericanTrans" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mnemonic" Relationship="Self.FK_Mnemonic_Aux" FromRole="Auxi" ToRole="Mnemonic" />
+          <NavigationProperty Name="Word" Relationship="Self.FK_Word_Aux" FromRole="Auxi" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Difficulty">
+          <Key>
+            <PropertyRef Name="IdDifficulty" />
+          </Key>
+          <Property Name="IdDifficulty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Difficulty1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Word" Relationship="Self.FK_Word_Difficulty" FromRole="Difficulty" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Mnemonic">
+          <Key>
+            <PropertyRef Name="IdMnemonic" />
+          </Key>
+          <Property Name="IdMnemonic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuxId" Type="Int32" Nullable="false" />
+          <Property Name="MnemonicDevice" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Auxi" Relationship="Self.FK_Mnemonic_Aux" FromRole="Mnemonic" ToRole="Auxi" />
+        </EntityType>
+        <EntityType Name="PartOfSpeech">
+          <Key>
+            <PropertyRef Name="IdPartOfSpeech" />
+          </Key>
+          <Property Name="IdPartOfSpeech" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartOfSpeech1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Word" Relationship="Self.FK_Word_PartOfSpeech" FromRole="PartOfSpeech" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Theme">
+          <Key>
+            <PropertyRef Name="IdTheme" />
+          </Key>
+          <Property Name="IdTheme" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Theme1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Word" Relationship="Self.FK_Word_Theme" FromRole="Theme" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Word" Relationship="Self.FK_Word_User" FromRole="User" ToRole="Word" />
+        </EntityType>
+        <EntityType Name="Word">
+          <Key>
+            <PropertyRef Name="IdWord" />
+          </Key>
+          <Property Name="IdWord" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartOfSpeechId" Type="Int32" Nullable="false" />
+          <Property Name="ThemeId" Type="Int32" Nullable="false" />
+          <Property Name="StudyDate" Type="DateTime" Precision="0" />
+          <Property Name="AuxId" Type="Int32" Nullable="false" />
+          <Property Name="DifficultyId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Example" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Hint" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BasicExampleMark" Type="Boolean" Nullable="false" />
+          <Property Name="GeneralCardMark" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Auxi" Relationship="Self.FK_Word_Aux" FromRole="Word" ToRole="Auxi" />
+          <NavigationProperty Name="Difficulty" Relationship="Self.FK_Word_Difficulty" FromRole="Word" ToRole="Difficulty" />
+          <NavigationProperty Name="PartOfSpeech" Relationship="Self.FK_Word_PartOfSpeech" FromRole="Word" ToRole="PartOfSpeech" />
+          <NavigationProperty Name="Theme" Relationship="Self.FK_Word_Theme" FromRole="Word" ToRole="Theme" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Word_User" FromRole="Word" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Mnemonic_Aux">
+          <End Role="Auxi" Type="Self.Auxi" Multiplicity="1" />
+          <End Role="Mnemonic" Type="Self.Mnemonic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auxi">
+              <PropertyRef Name="IdAux" />
+            </Principal>
+            <Dependent Role="Mnemonic">
+              <PropertyRef Name="AuxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Aux">
+          <End Role="Auxi" Type="Self.Auxi" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auxi">
+              <PropertyRef Name="IdAux" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="AuxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Difficulty">
+          <End Role="Difficulty" Type="Self.Difficulty" Multiplicity="0..1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Difficulty">
+              <PropertyRef Name="IdDifficulty" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="DifficultyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_PartOfSpeech">
+          <End Role="PartOfSpeech" Type="Self.PartOfSpeech" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PartOfSpeech">
+              <PropertyRef Name="IdPartOfSpeech" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="PartOfSpeechId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="IdRole" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_Theme">
+          <End Role="Theme" Type="Self.Theme" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Theme">
+              <PropertyRef Name="IdTheme" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="ThemeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Word_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Word" Type="Self.Word" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Word">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Auxi" EntityType="Self.Auxi" />
+          <EntitySet Name="Difficulty" EntityType="Self.Difficulty" />
+          <EntitySet Name="Mnemonic" EntityType="Self.Mnemonic" />
+          <EntitySet Name="PartOfSpeech" EntityType="Self.PartOfSpeech" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Theme" EntityType="Self.Theme" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Word" EntityType="Self.Word" />
+          <AssociationSet Name="FK_Mnemonic_Aux" Association="Self.FK_Mnemonic_Aux">
+            <End Role="Auxi" EntitySet="Auxi" />
+            <End Role="Mnemonic" EntitySet="Mnemonic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Aux" Association="Self.FK_Word_Aux">
+            <End Role="Auxi" EntitySet="Auxi" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Difficulty" Association="Self.FK_Word_Difficulty">
+            <End Role="Difficulty" EntitySet="Difficulty" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_PartOfSpeech" Association="Self.FK_Word_PartOfSpeech">
+            <End Role="PartOfSpeech" EntitySet="PartOfSpeech" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_Theme" Association="Self.FK_Word_Theme">
+            <End Role="Theme" EntitySet="Theme" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Word_User" Association="Self.FK_Word_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Word" EntitySet="Word" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Shapkin_mnemonikaModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Auxi">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Auxi">
+              <MappingFragment StoreEntitySet="Auxi">
+                <ScalarProperty Name="IdAux" ColumnName="IdAux" />
+                <ScalarProperty Name="RusWord" ColumnName="RusWord" />
+                <ScalarProperty Name="EngWord" ColumnName="EngWord" />
+                <ScalarProperty Name="TipicalMistake" ColumnName="TipicalMistake" />
+                <ScalarProperty Name="BritishTrans" ColumnName="BritishTrans" />
+                <ScalarProperty Name="NorthAmericanTrans" ColumnName="NorthAmericanTrans" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Difficulty">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Difficulty">
+              <MappingFragment StoreEntitySet="Difficulty">
+                <ScalarProperty Name="IdDifficulty" ColumnName="IdDifficulty" />
+                <ScalarProperty Name="Difficulty1" ColumnName="Difficulty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mnemonic">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Mnemonic">
+              <MappingFragment StoreEntitySet="Mnemonic">
+                <ScalarProperty Name="IdMnemonic" ColumnName="IdMnemonic" />
+                <ScalarProperty Name="AuxId" ColumnName="AuxId" />
+                <ScalarProperty Name="MnemonicDevice" ColumnName="MnemonicDevice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PartOfSpeech">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.PartOfSpeech">
+              <MappingFragment StoreEntitySet="PartOfSpeech">
+                <ScalarProperty Name="IdPartOfSpeech" ColumnName="IdPartOfSpeech" />
+                <ScalarProperty Name="PartOfSpeech1" ColumnName="PartOfSpeech" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Theme">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Theme">
+              <MappingFragment StoreEntitySet="Theme">
+                <ScalarProperty Name="IdTheme" ColumnName="IdTheme" />
+                <ScalarProperty Name="Theme1" ColumnName="Theme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Word">
+            <EntityTypeMapping TypeName="Shapkin_mnemonikaModel.Word">
+              <MappingFragment StoreEntitySet="Word">
+                <ScalarProperty Name="IdWord" ColumnName="IdWord" />
+                <ScalarProperty Name="PartOfSpeechId" ColumnName="PartOfSpeechId" />
+                <ScalarProperty Name="ThemeId" ColumnName="ThemeId" />
+                <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+                <ScalarProperty Name="AuxId" ColumnName="AuxId" />
+                <ScalarProperty Name="DifficultyId" ColumnName="DifficultyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Example" ColumnName="Example" />
+                <ScalarProperty Name="Hint" ColumnName="Hint" />
+                <ScalarProperty Name="BasicExampleMark" ColumnName="BasicExampleMark" />
+                <ScalarProperty Name="GeneralCardMark" ColumnName="GeneralCardMark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
