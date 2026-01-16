@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using mnemonika.AppForms;
+using System;
 using System.Windows.Forms;
 
 namespace mnemonika
@@ -16,7 +14,7 @@ namespace mnemonika
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
         }
     }
 }

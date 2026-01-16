@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace mnemonika
+namespace mnemonika.AppForms
 {
-    public partial class Form1 : Form
+    public partial class ParentForm : Form
     {
-        public Form1()
+        public ParentForm()
         {
             InitializeComponent();
         }
