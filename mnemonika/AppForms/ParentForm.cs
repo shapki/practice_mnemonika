@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using mnemonika.AppModules;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace mnemonika.AppForms
 {
@@ -22,13 +24,25 @@ namespace mnemonika.AppForms
 
         private void logoutButton_Click(object sender, System.EventArgs e)
         {
+            this.Hide();
 
+            var loginForm = Application.OpenForms.OfType<LoginForm>().FirstOrDefault();
+            if (loginForm == null)
+            {
+                loginForm = new LoginForm();
+            }
+            loginForm.Show();
+
+            if (this is MainForm mainForm)
+            {
+                mainForm.ClearUserData();
+            }
         }
 
-        public void SetFullNameAndRole()
+        public void SetFullNameAndRole(User user)
         {
-            this.roleLabel.Text = "Роль_temp";
-            this.fullNameLabel.Text = "Пользователь_temp";
+            this.roleLabel.Text = user.Role?.Role1 ?? "Неизвестная роль";
+            this.fullNameLabel.Text = user.FullName;
         }
 
         public void SetTitle(string title)

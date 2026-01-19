@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ParentForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.titleLabel = new System.Windows.Forms.Label();
-            this.roleLabel = new System.Windows.Forms.Label();
-            this.logoutButton = new System.Windows.Forms.Button();
             this.fullNameLabel = new System.Windows.Forms.Label();
+            this.logoutButton = new System.Windows.Forms.Button();
+            this.roleLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -62,35 +62,15 @@
             this.splitContainer1.SplitterDistance = 100;
             this.splitContainer1.TabIndex = 0;
             // 
-            // pictureBox1
+            // fullNameLabel
             // 
-            this.pictureBox1.Image = global::mnemonika.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(98, 12);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(56, 14);
-            this.titleLabel.TabIndex = 1;
-            this.titleLabel.Text = "Заголовок";
-            // 
-            // roleLabel
-            // 
-            this.roleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.roleLabel.AutoSize = true;
-            this.roleLabel.Location = new System.Drawing.Point(677, 12);
-            this.roleLabel.Name = "roleLabel";
-            this.roleLabel.Size = new System.Drawing.Size(30, 14);
-            this.roleLabel.TabIndex = 2;
-            this.roleLabel.Text = "Роль";
-            this.roleLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.fullNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.fullNameLabel.Location = new System.Drawing.Point(543, 26);
+            this.fullNameLabel.Name = "fullNameLabel";
+            this.fullNameLabel.Size = new System.Drawing.Size(157, 14);
+            this.fullNameLabel.TabIndex = 4;
+            this.fullNameLabel.Text = "  ";
+            this.fullNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // logoutButton
             // 
@@ -104,16 +84,34 @@
             this.logoutButton.UseVisualStyleBackColor = false;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
-            // fullNameLabel
+            // roleLabel
             // 
-            this.fullNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.fullNameLabel.AutoSize = true;
-            this.fullNameLabel.Location = new System.Drawing.Point(636, 26);
-            this.fullNameLabel.Name = "fullNameLabel";
-            this.fullNameLabel.Size = new System.Drawing.Size(71, 14);
-            this.fullNameLabel.TabIndex = 4;
-            this.fullNameLabel.Text = "Пользователь";
-            this.fullNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.roleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.roleLabel.Location = new System.Drawing.Point(540, 12);
+            this.roleLabel.Name = "roleLabel";
+            this.roleLabel.Size = new System.Drawing.Size(160, 14);
+            this.roleLabel.TabIndex = 2;
+            this.roleLabel.Text = "  ";
+            this.roleLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(98, 12);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(56, 14);
+            this.titleLabel.TabIndex = 1;
+            this.titleLabel.Text = "Заголовок";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::mnemonika.Properties.Resources.logo;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(80, 80);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // ParentForm
             // 
@@ -136,12 +134,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button logoutButton;
-        private System.Windows.Forms.Label roleLabel;
-        private System.Windows.Forms.Label titleLabel;
-        private System.Windows.Forms.Label fullNameLabel;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Button logoutButton;
+        public System.Windows.Forms.Label roleLabel;
+        public System.Windows.Forms.Label titleLabel;
+        public System.Windows.Forms.Label fullNameLabel;
+        public System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
