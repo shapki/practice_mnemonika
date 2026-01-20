@@ -16,3 +16,5 @@ D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.Up2Date
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.LoginForm.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppControls.CardControl.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.MainForm.resources
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.CreateUpdateCardForm.resources
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.CreateUpdateMnemonicForm.resources

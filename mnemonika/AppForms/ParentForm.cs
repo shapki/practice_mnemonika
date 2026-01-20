@@ -39,12 +39,22 @@ namespace mnemonika.AppForms
             }
         }
 
+        /// <summary>
+        /// PKGH
+        /// Установка текста с ФИО и ролью текущего пользователя
+        /// </summary>
+        /// <param name="user">Пользователь</param>
         public void SetFullNameAndRole(User user)
         {
             this.roleLabel.Text = user.Role?.Role1 ?? "Неизвестная роль";
             this.fullNameLabel.Text = user.FullName;
         }
 
+        /// <summary>
+        /// PKGH
+        /// Установка заголовка окна и в форме
+        /// </summary>
+        /// <param name="title">Текст заголовка</param>
         public void SetTitle(string title)
         {
             string tempTitle = "\"Мнемоника\": " + title;

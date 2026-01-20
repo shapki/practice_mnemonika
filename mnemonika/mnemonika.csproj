@@ -55,11 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppConstants\FilePath.cs" />
     <Compile Include="AppControls\CardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="AppControls\CardControl.Designer.cs">
       <DependentUpon>CardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateCardForm.Designer.cs">
+      <DependentUpon>CreateUpdateCardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateMnemonicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppForms\CreateUpdateMnemonicForm.Designer.cs">
+      <DependentUpon>CreateUpdateMnemonicForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppForms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -118,7 +131,7 @@
     <Compile Include="AppModules\Word.cs">
       <DependentUpon>MnemonikaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AppServices\AuthManager.cs" />
+    <Compile Include="AppServices\FileManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapkin_mnemonikaDataSet.Designer.cs">
@@ -128,6 +141,12 @@
     </Compile>
     <EmbeddedResource Include="AppControls\CardControl.resx">
       <DependentUpon>CardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppForms\CreateUpdateCardForm.resx">
+      <DependentUpon>CreateUpdateCardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppForms\CreateUpdateMnemonicForm.resx">
+      <DependentUpon>CreateUpdateMnemonicForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AppForms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -155,6 +174,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MnemonikaModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="AppDocs\work.docx" />
     <None Include="AppModules\MnemonikaModel.edmx.diagram">
       <DependentUpon>MnemonikaModel.edmx</DependentUpon>
     </None>

@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.addButton = new System.Windows.Forms.Button();
-            this.mnemonikButton = new System.Windows.Forms.Button();
             this.searchTextBox = new System.Windows.Forms.TextBox();
             this.searchLabel = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.partOfSpeechComboBox = new System.Windows.Forms.ComboBox();
+            this.partOfSpeechBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.shapkin_mnemonikaDataSet = new mnemonika.Shapkin_mnemonikaDataSet();
             this.partOfSpeechLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.partOfSpeechTableAdapter = new mnemonika.Shapkin_mnemonikaDataSetTableAdapters.PartOfSpeechTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -45,6 +48,8 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.partOfSpeechBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shapkin_mnemonikaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -56,21 +61,13 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(533, 0);
+            this.addButton.Location = new System.Drawing.Point(682, 1);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(115, 23);
             this.addButton.TabIndex = 5;
             this.addButton.Text = "Добавить карточку";
             this.addButton.UseVisualStyleBackColor = true;
-            // 
-            // mnemonikButton
-            // 
-            this.mnemonikButton.Location = new System.Drawing.Point(654, 0);
-            this.mnemonikButton.Name = "mnemonikButton";
-            this.mnemonikButton.Size = new System.Drawing.Size(138, 23);
-            this.mnemonikButton.TabIndex = 6;
-            this.mnemonikButton.Text = "Мнемонические приёмы";
-            this.mnemonikButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // searchTextBox
             // 
@@ -78,6 +75,7 @@
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(100, 20);
             this.searchTextBox.TabIndex = 7;
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
             // searchLabel
             // 
@@ -104,7 +102,6 @@
             this.splitContainer2.Panel1.Controls.Add(this.searchLabel);
             this.splitContainer2.Panel1.Controls.Add(this.searchTextBox);
             this.splitContainer2.Panel1.Controls.Add(this.addButton);
-            this.splitContainer2.Panel1.Controls.Add(this.mnemonikButton);
             this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(5);
             // 
             // splitContainer2.Panel2
@@ -116,11 +113,26 @@
             // 
             // partOfSpeechComboBox
             // 
+            this.partOfSpeechComboBox.DataSource = this.partOfSpeechBindingSource;
+            this.partOfSpeechComboBox.DisplayMember = "PartOfSpeech";
+            this.partOfSpeechComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.partOfSpeechComboBox.FormattingEnabled = true;
             this.partOfSpeechComboBox.Location = new System.Drawing.Point(222, 2);
             this.partOfSpeechComboBox.Name = "partOfSpeechComboBox";
             this.partOfSpeechComboBox.Size = new System.Drawing.Size(121, 22);
             this.partOfSpeechComboBox.TabIndex = 10;
+            this.partOfSpeechComboBox.ValueMember = "IdPartOfSpeech";
+            this.partOfSpeechComboBox.SelectedIndexChanged += new System.EventHandler(this.partOfSpeechComboBox_SelectedIndexChanged);
+            // 
+            // partOfSpeechBindingSource
+            // 
+            this.partOfSpeechBindingSource.DataMember = "PartOfSpeech";
+            this.partOfSpeechBindingSource.DataSource = this.shapkin_mnemonikaDataSet;
+            // 
+            // shapkin_mnemonikaDataSet
+            // 
+            this.shapkin_mnemonikaDataSet.DataSetName = "Shapkin_mnemonikaDataSet";
+            this.shapkin_mnemonikaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // partOfSpeechLabel
             // 
@@ -140,6 +152,10 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(800, 317);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // partOfSpeechTableAdapter
+            // 
+            this.partOfSpeechTableAdapter.ClearBeforeFill = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -148,6 +164,7 @@
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -159,6 +176,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.partOfSpeechBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shapkin_mnemonikaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -166,12 +185,14 @@
         #endregion
 
         private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.Button mnemonikButton;
         private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.TextBox searchTextBox;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label partOfSpeechLabel;
         private System.Windows.Forms.ComboBox partOfSpeechComboBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private Shapkin_mnemonikaDataSet shapkin_mnemonikaDataSet;
+        private System.Windows.Forms.BindingSource partOfSpeechBindingSource;
+        private Shapkin_mnemonikaDataSetTableAdapters.PartOfSpeechTableAdapter partOfSpeechTableAdapter;
     }
 }
