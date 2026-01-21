@@ -32,6 +32,7 @@ namespace mnemonika.AppForms
         /// </summary>
         private void LoadCards()
         {
+            context = new Entities();
             flowLayoutPanel1.Controls.Clear();
 
             IQueryable<Word> query = context.Word.Include("Auxi").Include("Difficulty");

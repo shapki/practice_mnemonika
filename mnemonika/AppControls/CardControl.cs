@@ -148,8 +148,6 @@ namespace mnemonika.AppControls
                         context.SaveChanges();
 
                         currentWord.StudyDate = wordInDb.StudyDate;
-
-                        studyDateLabel.Text = GetStudyDateText();
                     }
                 }
             }

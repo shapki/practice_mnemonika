@@ -12,9 +12,10 @@ D:\mnemonika\mnemonika\bin\Debug\EntityFramework.dll
 D:\mnemonika\mnemonika\bin\Debug\EntityFramework.SqlServer.dll
 D:\mnemonika\mnemonika\bin\Debug\EntityFramework.xml
 D:\mnemonika\mnemonika\bin\Debug\EntityFramework.SqlServer.xml
-D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.Up2Date
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.LoginForm.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppControls.CardControl.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.MainForm.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.CreateUpdateCardForm.resources
 D:\mnemonika\mnemonika\obj\Debug\mnemonika.AppForms.CreateUpdateMnemonicForm.resources
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.SuggestedBindingRedirects.cache
+D:\mnemonika\mnemonika\obj\Debug\mnemonika.csproj.CopyComplete
